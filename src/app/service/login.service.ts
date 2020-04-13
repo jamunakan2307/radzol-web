@@ -16,6 +16,6 @@ export class LoginService {
       password,
       tenantAlias
     };
-    return this.http.post<User>('http://localhost:8080/v1/authentication/login', userCredentials);
+    return this.http.post<User>('/v1/authentication/login', userCredentials);
   }
 }

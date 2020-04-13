@@ -11,7 +11,6 @@ import { User } from '../models/user.model';
 })
 export class LoginComponent implements OnInit {
 
-  credentials = {username: '', password: '', tenant: ''};
   loginForm: FormGroup;
   error: string;
   success: string;
@@ -26,7 +25,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.success = null;
     this.error = null;
-    this.loginService.login(this.credentials.username, this.credentials.password, this.credentials.tenant).subscribe(
+    this.loginService.login(this.loginForm.controls.username.value, this.loginForm.controls.password.value,
+      this.loginForm.controls.tenant.value).subscribe(
       (data: User) => this.success = 'successfully load',
       error => this.error = 'Failed to load'
 
@@ -35,9 +35,9 @@ export class LoginComponent implements OnInit {
 
   private createForm() {
     this.loginForm = this.formBuilder.group( {
-      username: new FormControl(this.credentials.username, [Validators.required]),
-      password: new FormControl(this.credentials.password, [Validators.required]),
-      tenant: new FormControl(this.credentials.tenant, [Validators.required])
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      tenant: new FormControl('', [Validators.required])
     });
   }
 
