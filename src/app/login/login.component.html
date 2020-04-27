@@ -1,0 +1,21 @@
+<div class="alert alert-danger" [hidden]="!error">
+	{{error}}
+</div>
+<div [hidden]="!success">
+  {{success}}
+</div>
+<form role="form" (submit)="login()" [formGroup]="loginForm">
+	<div class="form-group">
+		<label for="username">Username:</label>
+    <input type="text" class="form-control" id="username" formControlName="username" required/>
+	</div>
+	<div class="form-group">
+		<label for="password">Password:</label>
+    <input type="password" class="form-control" id="password" formControlName="password" required/>
+	</div>
+  <div class="form-group">
+		<label for="tenant">Tenant:</label>
+    <input type="text" class="form-control" id="tenant" formControlName="tenant" required/>
+	</div>
+	<button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+</form>
